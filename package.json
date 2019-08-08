@@ -1,0 +1,15 @@
+{
+  "name": "lookingglass-automation-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "protractor ./protractor.conf.js",
+    "wdupdate": "webdriver-manager update"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "protractor": "^5.4.2"
+  }
+}
