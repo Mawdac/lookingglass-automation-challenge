@@ -6,7 +6,9 @@ exports.config = {
         browserName: 'chrome'
     },
 
-    specs: ['test.spec.js'],
+    specs: [
+        'tmp/**/*.spec.js'
+    ],
 
     jasmineNodeOpts: {
         showColors: true,
