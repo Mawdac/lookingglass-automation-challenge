@@ -12,6 +12,8 @@ describe('automation practice homepage', function () {
     });
 
     it('should navigate to the homepage', async function (): Promise<any> {
+        let products = [3, 4, 5, 6, 7]; // in a larger project probably would use some dataconfig for this
+
         await homePage.get(); // go to the homepage
 
         await homePage.clickDressesTab(); // go to the dresses page
@@ -19,8 +21,9 @@ describe('automation practice homepage', function () {
         await dressPage.clickListView(); // switch to list-view
 
         // add one of each dress to cart
-        for (let index = 3; index < 8; index++) { // TODO: probably several better ways to do this loop
-            await dressPage.clickDressAddToCartButton(index);
+        for (let index = 0; index < products.length; index++) {
+            const productId = products[index];
+            await dressPage.clickDressAddToCartButton(productId);
             await dressPage.clickContinueCartPopup();
         }
 
