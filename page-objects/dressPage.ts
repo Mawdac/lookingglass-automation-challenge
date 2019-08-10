@@ -5,7 +5,7 @@ export class DressPage {
     gridView = element(by.css("a[title=\"Grid\"]")).element(by.css(".icon-th-list"));
     listView = element(by.css("a[title=\"List\"]")).element(by.css(".icon-th-list"));
 
-    closeCartPopup = element(by.css("span[title=\"Close window\"]"))
+    continueCartPopup = element(by.css(".continue"))
 
     async clickGridView(): Promise<any> {
         return await this.gridView.click();
@@ -15,8 +15,8 @@ export class DressPage {
         return await this.listView.click();
     }
 
-    async clickCloseCartPopup(): Promise<any> {
-        return await this.closeCartPopup.click();
+    async clickContinueCartPopup(): Promise<any> {
+        return await this.continueCartPopup.click();
     }
 
     async clickDressAddToCartButton(index: any): Promise<any> {
