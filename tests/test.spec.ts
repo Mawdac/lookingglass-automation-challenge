@@ -12,18 +12,19 @@ describe('automation practice homepage', function () {
     });
 
     it('should navigate to the homepage', async function (): Promise<any> {
-        await homePage.get();
+        await homePage.get(); // go to the homepage
 
-        await homePage.clickDressesTab();
+        await homePage.clickDressesTab(); // go to the dresses page
 
-        await dressPage.clickListView();
+        await dressPage.clickListView(); // switch to list-view
 
-        for (let index = 3; index < 8; index++) {
+        // add one of each dress to cart
+        for (let index = 3; index < 8; index++) { // TODO: probably several better ways to accomplish this
             await dressPage.clickDressAddToCartButton(index);
             await dressPage.clickContinueCartPopup();
         }
 
-        await dressPage.clickShoppingCartIcon();
+        await dressPage.clickShoppingCartIcon(); // go to summary page
 
         await browser.sleep(5000);
     });
