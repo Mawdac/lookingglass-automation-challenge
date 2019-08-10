@@ -16,20 +16,14 @@ describe('automation practice homepage', function () {
 
         await homePage.clickDressesTab();
 
-        expect(browser.getCurrentUrl()).toEqual("http://automationpractice.com/index.php?id_category=8&controller=category");
-
-        await browser.sleep(2000);
-
         await dressPage.clickListView();
 
-        await browser.sleep(2000);
+        for (let index = 3; index < 8; index++) {
+            await dressPage.clickDressAddToCartButton(index);
 
-        await dressPage.clickDressAddToCartButton(3);
+            await browser.sleep(500);
 
-        await browser.sleep(2000);
-
-        await dressPage.clickCloseCartPopup();
-
-        await browser.sleep(2000);
+            await dressPage.clickContinueCartPopup();
+        }
     });
 });
