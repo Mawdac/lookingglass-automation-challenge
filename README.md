@@ -2,11 +2,16 @@
 
 ## Setup
 
+Prerequisites:
+
+- You must have [node](https://nodejs.org/en/download/) and [git](https://git-scm.com/downloads) already installed to complete the setup.
+- You also need chrome and firefox installed to execute the test.
+
 Setting up the project is simple and these steps apply to any platform (Linux, Windows or Mac OS):
 
 1. Clone it - `git clone https://github.com/Mawdac/lookingglass-automation-challenge`
-2. Run `npm install` - installs all project dependencies
-3. Run `npm run wdupdate` - downloads the needed chrome/firefox webdrivers
+2. Run `npm install` - this installs all project dependencies
+3. Run `npm run wdupdate` - this downloads the needed chrome/firefox webdrivers
 
 ---
 
