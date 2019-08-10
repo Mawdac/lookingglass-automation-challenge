@@ -95,6 +95,6 @@ export class DressPage {
      * dressPage.clickDressAddToCartButton(3) // This adds the dress with product ID 3 to the cart
      */
     async clickDressAddToCartButton(productID: any): Promise<any> {
-        return await element.all(by.css("a[data-id-product=\"" + productID + "\"]")).first().click();
+        return await element.all(by.css("a[data-id-product=\"" + productID + "\"]")).first().click(); // TODO: refine css to avoid getting multiple elements
     }
 }

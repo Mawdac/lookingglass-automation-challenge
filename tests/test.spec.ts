@@ -19,7 +19,7 @@ describe('automation practice homepage', function () {
         await dressPage.clickListView(); // switch to list-view
 
         // add one of each dress to cart
-        for (let index = 3; index < 8; index++) { // TODO: probably several better ways to accomplish this
+        for (let index = 3; index < 8; index++) { // TODO: probably several better ways to do this loop
             await dressPage.clickDressAddToCartButton(index);
             await dressPage.clickContinueCartPopup();
         }

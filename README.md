@@ -2,7 +2,7 @@
 
 ## Setup
 
-Setting up the project is fairly simple:
+Setting up the project is simple and these steps apply to any platform (Linux, Windows or Mac OS):
 
 1. Clone it - `git clone https://github.com/Mawdac/lookingglass-automation-challenge`
 2. Run `npm install` - installs all project dependencies
