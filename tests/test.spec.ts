@@ -20,10 +20,11 @@ describe('automation practice homepage', function () {
 
         for (let index = 3; index < 8; index++) {
             await dressPage.clickDressAddToCartButton(index);
-
-            await browser.sleep(500);
-
             await dressPage.clickContinueCartPopup();
         }
+
+        await dressPage.clickShoppingCartIcon();
+
+        await browser.sleep(5000);
     });
 });
