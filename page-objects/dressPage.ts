@@ -79,7 +79,7 @@ export class DressPage {
      * @memberof DressPage
      */
     async clickContinueCartPopup(): Promise<any> {
-        await browser.sleep(500); // minor sleep to prevent timing issues with popup displaying the element
+        await browser.sleep(800); // minor sleep to prevent timing issues with popup displaying the element
         return await this.continueCartPopup.click();
     }
 
