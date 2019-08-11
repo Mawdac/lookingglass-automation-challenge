@@ -3,7 +3,7 @@ import { DressPage } from '../page-objects/dressPage';
 import { SummaryPage } from '../page-objects/summaryPage';
 import { browser } from 'protractor';
 
-describe('automation practice homepage', function () {
+describe('automation practice homepage', async function () {
     let homePage = new HomePage();
     let dressPage = new DressPage();
     let summaryPage = new SummaryPage();
@@ -34,8 +34,8 @@ describe('automation practice homepage', function () {
         // check for each product on the summary page
         for (let index = 0; index < products.length; index++) {
             const productId = products[index];
-            await summaryPage.verifyProductById(productId);
-            // expect(await summaryPage.checkProductPrice(product)).toBeTruthy();
+            let verified = await summaryPage.verifyProductById(productId);
+            // await summaryPage.checkProductPriceById(productId);
         }
         await browser.sleep(5000);
     });

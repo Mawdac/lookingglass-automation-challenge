@@ -1,14 +1,19 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, ElementFinder } from 'protractor';
 
 export class SummaryPage {
+    private async getProductById(productId: any): Promise<ElementFinder> {
+        return await element(by.css("tr[id^=\"product_" + productId + "\""));
+    }
+
     async verifyProductById(productId: any): Promise<any> {
-        var product = element(by.css("tr[id^=\"product_" + productId + "\""));
+        var product = await this.getProductById(productId);
         return await expect(product.isDisplayed()).toBeTruthy();
     }
 
-    async checkProductPrice(product: Element): Promise<boolean> {
-        let price, discount, discountPrice, calculatedPrice, isCorrect = false;
-        await element(product).element(by.css(".cart_unit")).element(by.css(".special-price")).isDisplayed().then( function (discountedProduct) {
+    async checkProductPriceById(productId: any): Promise<boolean> {
+        let price, discount, discountPrice, calculatedPrice;
+        var product = await this.getProductById(productId);
+        await element(product).element(by.css(".cart_unit")).element(by.css(".special-price")).isDisplayed().then( async function (discountedProduct) {
             if (discountedProduct) {
                 price = element(product).element(by.css(".cart_unit")).element(by.css(".old-price")).getText();
                 discount = element(product).element(by.css(".cart_unit")).element(by.css(".price-percent-reduction")).getText();
@@ -26,13 +31,11 @@ export class SummaryPage {
                 console.log(discountPrice);
                 console.log(calculatedPrice);
 
-                if (calculatedPrice == discountPrice) {
-                    isCorrect = true;
-                }
+                return await expect(calculatedPrice).toEqual(discountPrice);
             } else {
-                isCorrect = true;
+                return await expect(element(product).element(by.css(".cart_unit")).element(by.css("price")).isDisplayed).toBeTruthy(); // TODO: this really needs refactoring
             }
         });
-        return isCorrect;
+        return;
     }
 }
