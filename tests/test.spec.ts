@@ -3,40 +3,46 @@ import { DressPage } from '../page-objects/dressPage';
 import { SummaryPage } from '../page-objects/summaryPage';
 import { browser } from 'protractor';
 
-describe('automation practice homepage', async function () {
+describe('Test 1 - LookingGlass Automation Challenge', async function () {
     let homePage = new HomePage();
     let dressPage = new DressPage();
     let summaryPage = new SummaryPage();
+    let products = [3,4,5,6,7]; // in a larger project would grab this from data config or database
 
-    beforeEach(async function (): Promise<any> {
+    beforeAll(async function () {
         await browser.waitForAngularEnabled(false); // non-angular site
         await browser.driver.manage().window().maximize();
     });
 
-    it('should add 5 dresses to cart and display correct totals on summary', async function (): Promise<any> {
-        let products = [3, 4, 5, 6, 7]; // in a larger project probably would use some dataconfig for this
+    it('should go to the homepage', async function () {
+        await homePage.get();
+    });
 
-        await homePage.get(); // go to the homepage
+    it('should go to the dresses page', async function () {
+        await homePage.clickDressesTab();
+    });
 
-        await homePage.clickDressesTab(); // go to the dresses page
+    it('should switch to list-view', async function () {
+        await dressPage.clickListView();
+    });
 
-        await dressPage.clickListView(); // switch to list-view
-
-        // add one of each dress to cart
+    it('should add one of each dress to cart', async function () {
         for (let index = 0; index < products.length; index++) {
             const productId = products[index];
             await dressPage.clickDressAddToCartButton(productId);
             await dressPage.clickContinueCartPopup();
         }
+    });
 
-        await dressPage.clickShoppingCartIcon(); // go to summary page
+    it('should go to summary page', async function () {
+        await dressPage.clickShoppingCartIcon();
+    });
 
-        // check for each product on the summary page
+    it('should show each product on the summary page', async function () {
         for (let index = 0; index < products.length; index++) {
             const productId = products[index];
             let verified = await summaryPage.verifyProductById(productId);
             // await summaryPage.checkProductPriceById(productId);
         }
-        await browser.sleep(5000);
     });
 });
