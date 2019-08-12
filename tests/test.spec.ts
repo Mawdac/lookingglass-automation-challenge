@@ -3,11 +3,11 @@ import { DressPage } from '../page-objects/dressPage';
 import { SummaryPage } from '../page-objects/summaryPage';
 import { browser } from 'protractor';
 
-describe('Test 1 - LookingGlass Automation Challenge', async function () {
+describe('Add all dresses to cart and verify price', async function () {
     let homePage = new HomePage();
     let dressPage = new DressPage();
     let summaryPage = new SummaryPage();
-    let products = [3,4,5,6,7]; // in a larger project would grab this from data config or database
+    let products = [3, 4, 5, 6, 7]; // in a larger project would grab this from data config or database
 
     beforeAll(async function () {
         await browser.waitForAngularEnabled(false); // non-angular site
@@ -26,23 +26,27 @@ describe('Test 1 - LookingGlass Automation Challenge', async function () {
         await dressPage.clickListView();
     });
 
-    it('should add one of each dress to cart', async function () {
-        for (let index = 0; index < products.length; index++) {
-            const productId = products[index];
+    for (let index = 0; index < products.length; index++) {
+        const productId = products[index];
+        it('should add dress with product id:' + productId + ' to cart', async function () {
             await dressPage.clickDressAddToCartButton(productId);
             await dressPage.clickContinueCartPopup();
-        }
-    });
+        });
+    }
 
     it('should go to summary page', async function () {
         await dressPage.clickShoppingCartIcon();
     });
 
-    it('should show each product on the summary page', async function () {
-        for (let index = 0; index < products.length; index++) {
-            const productId = products[index];
-            let verified = await summaryPage.verifyProductById(productId);
-            // await summaryPage.checkProductPriceById(productId);
-        }
-    });
+
+    for (let index = 0; index < products.length; index++) {
+        const productId = products[index];
+        it('should display dress with product id:' + productId + ' on the summary page', async function () {
+            await summaryPage.verifyProductById(productId);
+        });
+
+        xit('should display correct product price for product ' + productId, async function () {
+            await summaryPage.verifyProductPriceById(productId);
+        });
+    }
 });
