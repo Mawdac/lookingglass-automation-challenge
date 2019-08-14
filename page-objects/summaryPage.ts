@@ -1,42 +1,34 @@
 import { browser, element, by, ElementFinder } from 'protractor';
 
 export class SummaryPage {
-    private async getProductById(productId: any): Promise<ElementFinder> {
-        return await element(by.css("tr[id^=\"product_" + productId + "\""));
-    }
-
     async verifyProductById(productId: any): Promise<any> {
-        var product = await this.getProductById(productId);
+        let product = await element(by.css("tr[id^=\"product_" + productId + "\"]"));
         return await expect(product.isDisplayed()).toBeTruthy();
     }
 
     async verifyProductPriceById(productId: any): Promise<any> {
-        let price, discount, discountPrice, calculatedPrice;
-        var product = await this.getProductById(productId);
-        // discountPrice = await element(product).element(by.css(".special-price"));
-        // await element(product).element(by.css(".special-price")).isDisplayed().then(async function (discountedProduct) {
-        //     if (discountedProduct) {
-        price = element(product).element(by.css(".old-price")).getText();
-        discount = element(product).element(by.css(".price-percent-reduction")).getText();
-        discountPrice = element(product).element(by.css(".price")).getText();
+        let priceText, prices;
+        priceText = await element(by.css("span[id^=\"product_price_" + productId + "\"]")).getText();
+        prices = priceText.split(" ");
 
-        price = Number(price.replace("$", ""));
-        discount = discount.replace("%", "");
-        discount = Number(discount.replace("-", "")) * (1 / 100);
-        discountPrice = Number(discount.replace("$", ""));
+        if (prices.length > 1) {
+            for (let index = 0; index < prices.length; index++) {
+                prices[index] = prices[index].replace(/[$%-]/g, "");
+            }
+            let oldPrice = Number(prices[4]);
+            let newPrice = Number(prices[0]);
+            let discount = Number(prices[2] / 100);
+            let calculatedPrice = oldPrice - (oldPrice * discount);
+            calculatedPrice = Math.round(calculatedPrice * 100) / 100;
 
-        calculatedPrice = price - (price * discount);
+            return await expect(newPrice).toEqual(calculatedPrice);
+        } else {
+            return await expect(priceText).toBeTruthy();
+        }
+    }
 
-        // console.log(price);
-        // console.log(discount);
-        // console.log(discountPrice);
-        // console.log(calculatedPrice);
-
-        return await expect(calculatedPrice).toEqual(discountPrice);
-        // } else {
-        //     return await expect(element(product).element(by.css(".cart_unit")).element(by.css("price")).isDisplayed).toBeTruthy();
-        // }
-        // });
-        // return;
+    async verifyTotalPrice(): Promise<any> {
+        let totalProductElements = element.all(by.css("span[id^=\"total_product_price_\"]"));
+        let totalProductPrice = element(by.css("td[id^=\"total_product\"])");
     }
 }
