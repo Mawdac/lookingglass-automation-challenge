@@ -49,4 +49,8 @@ describe('Add all dresses to cart and verify price', async function () {
             await summaryPage.verifyProductPriceById(productId);
         });
     }
+
+    it('should display the correct totals', async function () {
+        await summaryPage.verifyTotalPrice();
+    });
 });
