@@ -45,7 +45,7 @@ describe('Add all dresses to cart and verify price', async function () {
             await summaryPage.verifyProductById(productId);
         });
 
-        xit('should display correct product price for product ' + productId, async function () {
+        it('should display correct price for product ' + productId, async function () {
             await summaryPage.verifyProductPriceById(productId);
         });
     }
