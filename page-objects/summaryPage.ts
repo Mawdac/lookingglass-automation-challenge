@@ -85,7 +85,6 @@ export class SummaryPage {
             const productString = await allProductElements[index].getText();
             let productPrice = Number(productString.replace(/[$ ]/, ""));
             calculatedTotalProduct += productPrice;
-            console.log(calculatedTotalProduct);
         }
 
         // calculate the totals
