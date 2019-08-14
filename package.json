@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf tmp",
     "tsc": "tsc",
-    "pretest": "npm run tsc",
+    "pretest": "npm run clean && npm run tsc",
     "test": "protractor ./protractor.conf.js",
     "wdupdate": "webdriver-manager update"
   },
