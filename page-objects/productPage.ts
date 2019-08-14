@@ -2,17 +2,17 @@
 import { browser, element, by } from 'protractor';
 
 /**
- * This is the Dresses page-object. All functionality on the dresses
+ * This is the Product page-object. All functionality on the product
  * page is contained in this class.
  *
  * @export
- * @class DressPage
+ * @class ProductPage
  */
-export class DressPage {
+export class ProductPage {
     /**
      * This is the grid-view icon. Clicking it changes the view to 'grid'
      *
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     gridView = element(by.css("a[title=\"Grid\"]")).element(by.css(".icon-th-list"));
 
@@ -20,7 +20,7 @@ export class DressPage {
     /**
      * This is the list-view icon. Clicking it changes the view to 'list'
      *
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     listView = element(by.css("a[title=\"List\"]")).element(by.css(".icon-th-list"));
 
@@ -28,7 +28,7 @@ export class DressPage {
      * This is the shopping cart icon at the top of the page. Clicking it
      * takes you to the summary page.
      *
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     shoppingCartIcon = element(by.css("a[title=\"View my shopping cart\"]"));
 
@@ -36,7 +36,7 @@ export class DressPage {
      * This is the continue button on the cart popup that appears when a user
      * adds an item to their cart. Clicking this effectively closes the popup.
      *
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     continueCartPopup = element(by.css(".continue"))
 
@@ -45,7 +45,7 @@ export class DressPage {
      * This clicks the grid view icon.
      *
      * @returns {Promise<any>} Returns a promise when the grid view icon has been clicked.
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     async clickGridView(): Promise<any> {
         return await this.gridView.click();
@@ -55,7 +55,7 @@ export class DressPage {
      * This clicks the list view icon.
      *
      * @returns {Promise<any>} Returns a promise when the grid view icon has been clicked.
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     async clickListView(): Promise<any> {
         return await this.listView.click();
@@ -65,7 +65,7 @@ export class DressPage {
      * This clicks the shopping cart icon.
      *
      * @returns {Promise<any>} Returns a promise when the shopping cart icon has been clicked.
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     async clickShoppingCartIcon(): Promise<any> {
         return await this.shoppingCartIcon.click();
@@ -76,7 +76,7 @@ export class DressPage {
      * to their cart.
      *
      * @returns {Promise<any>} Returns a promise when the 'Continue Shopping' button has been clicked.
-     * @memberof DressPage
+     * @memberof ProductPage
      */
     async clickContinueCartPopup(): Promise<any> {
         await browser.sleep(1200); // minor sleep to prevent timing issues with popup displaying the element
@@ -84,17 +84,17 @@ export class DressPage {
     }
 
     /**
-     * This clicks the 'Add to Cart' button for the product ID of a given dress. Note: This requires
+     * This clicks the 'Add to Cart' button for the product ID of a given product. Note: This requires
      * list-view in order to work.
      *
-     * @param {*} productID The product ID of the dress you want to add to cart.
+     * @param {*} productID The product ID of the product you want to add to cart.
      * @returns {Promise<any>} Returns a promise when the 'Add to Cart' button has been clicked.
-     * @memberof DressPage
+     * @memberof ProductPage
      * @example
-     * dressPage.clickListView(); // Makes the 'Add to Cart' button visible
-     * dressPage.clickDressAddToCartButton(3) // This adds the dress with product ID 3 to the cart
+     * productPage.clickListView(); // Makes the 'Add to Cart' button visible
+     * productPage.clickAddToCartButton(3) // This adds the product with product ID 3 to the cart
      */
-    async clickDressAddToCartButton(productID: any): Promise<any> {
+    async clickAddToCartButton(productID: any): Promise<any> {
         return await element.all(by.css("a[data-id-product=\"" + productID + "\"]")).first().click(); // TODO: refine css to avoid getting multiple elements
     }
 }
