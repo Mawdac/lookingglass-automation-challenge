@@ -39,7 +39,7 @@ export class SummaryPage {
 
         // if product has a discount
         if (prices.length > 1) {
-            let oldPrice = Number(prices[4]);
+            let oldPrice = Number(prices[4]); // TODO: redo hardcoded indexes to something that won't break so easily
             let newPrice = Number(prices[0]);
             let discount = Number(prices[2] / 100);
             let calculatedPrice = oldPrice - (oldPrice * discount);
@@ -60,6 +60,7 @@ export class SummaryPage {
      * @memberof SummaryPage
      */
     async verifyTotalPrice(): Promise<any> {
+        // TODO: refactor text variables to properties in the SummaryPage class so that they can be reused, same as DressPage
         // get all products and summary amounts from the page
         let allProductElements = await element.all(by.css("span[id^=\"total_product_price_\"]"));
         let totalProductText = await element(by.css("td[id^=\"total_product\"]")).getText();
