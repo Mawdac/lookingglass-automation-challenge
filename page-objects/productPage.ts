@@ -16,13 +16,19 @@ export class ProductPage {
      */
     gridView = element(by.css("a[title=\"Grid\"]")).element(by.css(".icon-th-list"));
 
-
     /**
      * This is the list-view icon. Clicking it changes the view to 'list'
      *
      * @memberof ProductPage
      */
     listView = element(by.css("a[title=\"List\"]")).element(by.css(".icon-th-list"));
+
+    /**
+     * This it the 'Tops' subcategory image link.
+     *
+     * @memberof ProductPage
+     */
+    topsSubcategory = element.all(by.css("a[title=\"Tops\"]")).last();
 
     /**
      * This is the shopping cart icon at the top of the page. Clicking it
@@ -62,6 +68,16 @@ export class ProductPage {
     }
 
     /**
+     * This clicks the 'Tops' image link.
+     *
+     * @returns {Promise<any>} Returns a promise when the 'Tops' link has been clicked.
+     * @memberof ProductPage
+     */
+    async clickTops(): Promise<any> {
+        return await this.topsSubcategory.click();
+    }
+
+    /**
      * This clicks the shopping cart icon.
      *
      * @returns {Promise<any>} Returns a promise when the shopping cart icon has been clicked.
@@ -95,6 +111,6 @@ export class ProductPage {
      * productPage.clickAddToCartButton(3) // This adds the product with product ID 3 to the cart
      */
     async clickAddToCartButton(productID: any): Promise<any> {
-        return await element.all(by.css("a[data-id-product=\"" + productID + "\"]")).first().click(); // TODO: refine css to avoid getting multiple elements
+        return await element.all(by.css("a[data-id-product=\"" + productID + "\"]")).first().click(); // TODO: refine locator to avoid getting multiple elements
     }
 }

@@ -11,11 +11,19 @@ import { browser, element, by } from 'protractor';
 export class HomePage {
     /**
      * This is the dress tab. Clicking it takes the user to the 
-     * dresses page.
+     * dresses product page.
      *
      * @memberof HomePage
      */
     dressesTab = element.all(by.css("a[title=\"Dresses\"]")).last();
+
+    /**
+     * This is the women tab. Clicking it takes the user to the
+     * women product page.
+     *
+     * @memberof HomePage
+     */
+    womenTab = element(by.css("a[title=\"Women\"]"));
 
     /**
      * This takes you to the home page of automationpractice.com.
@@ -35,5 +43,15 @@ export class HomePage {
      */
     async clickDressesTab(): Promise<any> {
         return await this.dressesTab.click();
+    }
+
+    /**
+     * This clicks the women tab.
+     *
+     * @returns {Promise<any>} Returns a promise when the women tab has been clicked.
+     * @memberof HomePage
+     */
+    async clickWomenTab(): Promise<any> {
+        return await this.womenTab.click();
     }
 }
