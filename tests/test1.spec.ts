@@ -14,6 +14,10 @@ describe('Add all dresses to cart and verify price', async function () {
         await browser.driver.manage().window().maximize();
     });
 
+    afterAll(async function () {
+        await browser.driver.manage().deleteAllCookies();
+    });
+
     it('should go to the homepage', async function () {
         await homePage.get();
     });
