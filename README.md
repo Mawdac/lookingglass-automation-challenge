@@ -64,3 +64,14 @@ Test results can be viewed in 2 ways:
 2. The HTML screenshot report
    - Located under tmp/report after executing a test
    - Open index.html in a browser to view the report
+
+Granted there are no issues with setup/running the tests, the tests should pass without an issue. To see how the tests might look when they fail, simply update any of the assertions on the SummaryPage.
+
+1. Go to `page-objects` > `summaryPage.ts`
+2. Update any of the assertions so that it fails (assertions on lines 49, 52, 96, 97 and 98). Example:
+```javascript
+// line 96 - before
+await expect(calculatedTotalProduct).toEqual(totalProduct, calculatedTotalProduct + " is expected to equal " + totalProduct);
+// line 96 - after
+await expect(calculatedTotalProduct).toEqual(2, calculatedTotalProduct + " is expected to equal " + 2);
+```
