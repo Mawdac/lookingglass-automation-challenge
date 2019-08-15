@@ -15,9 +15,15 @@ Setting up the project is simple and these steps apply to any platform (Linux, W
 
 ---
 
-## Running the test
+## Running Tests
 
-The test is configured to run through npm's default test command, so all you need to do is open a terminal in the project folder and run: 
+There are 2 tests in this automation suite: `test1.spec.ts` and `test2.spec.ts`
+
+> `test1.spec.ts` is the hackerrank automation challenge original test case.
+
+> `test2.spec.ts` uses the same functionality from test 1 except it adds different products and uses many of the same page-object functions.
+
+The tests are configured to run through npm's default test command, so all you need to do is open a terminal in the project folder and run: 
 ```bash
 npm test
 ```
